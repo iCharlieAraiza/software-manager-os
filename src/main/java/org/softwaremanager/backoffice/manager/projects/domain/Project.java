@@ -3,10 +3,7 @@ package org.softwaremanager.backoffice.manager.projects.domain;
 import org.softwaremanager.backoffice.manager.tasks.domain.Task;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Project {
@@ -18,6 +15,10 @@ public class Project {
     private String description;
     private Date startDate;
     private Date endDate;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    Set<Task> tasks = new HashSet<>();
+
 
     @Enumerated(EnumType.ORDINAL)
     private ProjectStatus status;
@@ -80,5 +81,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }
