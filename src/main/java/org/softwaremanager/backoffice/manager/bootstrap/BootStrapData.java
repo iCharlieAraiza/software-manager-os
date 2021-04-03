@@ -24,9 +24,8 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //initProjectData();
         //createProject();
-        //mapTasksInProjects();
+        //initProjectData();
         testDelete();
     }
 
@@ -70,7 +69,7 @@ public class BootStrapData implements CommandLineRunner {
     }
 
     public void testDelete(){
-        Project project = projectRepository.findById(1L).get();
+        Project project = projectRepository.findById(5L).get();
         System.out.println(project.getName());
 
         projectRepository.delete(project);
