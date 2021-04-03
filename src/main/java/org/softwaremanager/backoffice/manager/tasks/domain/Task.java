@@ -20,7 +20,7 @@ public class Task {
     @Temporal(TemporalType.TIME)
     private Date finishDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
 

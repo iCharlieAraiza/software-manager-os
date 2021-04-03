@@ -25,6 +25,7 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         initProjectData();
+        //createProject();
     }
 
     public void initProjectData() throws ParseException {
@@ -34,19 +35,26 @@ public class BootStrapData implements CommandLineRunner {
 
         Project projectA = new Project("Gestor de software",
                 "Software dedicado par la gestión de proyectos de software");
-        projectA.setStatus(ProjectStatus.ACTIVE);
-        projectA.setStartDate(new Date());
+        //projectA.setStatus(ProjectStatus.ACTIVE);
+        //projectA.setStartDate(new Date());
         //projectRepository.save(projectA);
 
         List<Project> projects = projectRepository.findAll();
+        //List<Task> tasks = taskRepository.findAll();
 
-        Task task = new Task("Arreglar el problema");
+        Task task = new Task("Buscar solucionar el problema");
         task.setProject(projects.get(0));
 
-        System.out.println(projects.get(0).getName());
-        task.setStartDate(new Date());
-        //taskRepository.save(task);
-
-
+        //System.out.println(projects.get(0).getName());
+        //task.setStartDate(new Date());
+        taskRepository.save(task);
     }
+
+    public void createProject(){
+        Project project = new Project("Gestor de software",
+                "Sistema de desarrollo de software de código abierto");
+        project.setStartDate(new Date());
+        projectRepository.save(project);
+    }
+
 }

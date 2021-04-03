@@ -1,7 +1,12 @@
 package org.softwaremanager.backoffice.manager.projects.domain;
 
+import org.softwaremanager.backoffice.manager.tasks.domain.Task;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Project {
@@ -76,7 +81,4 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
-
 }
