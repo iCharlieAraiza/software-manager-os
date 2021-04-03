@@ -1,8 +1,10 @@
 package org.softwaremanager.backoffice.manager.bootstrap;
 
 import org.softwaremanager.backoffice.manager.projects.domain.Project;
-import org.softwaremanager.backoffice.manager.projects.domain.Status;
+import org.softwaremanager.backoffice.manager.projects.domain.ProjectStatus;
 import org.softwaremanager.backoffice.manager.projects.repository.ProjectRepository;
+import org.softwaremanager.backoffice.manager.tasks.domain.Task;
+import org.softwaremanager.backoffice.manager.tasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -10,11 +12,15 @@ import org.springframework.stereotype.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
     @Autowired
     ProjectRepository projectRepository;
+
+    @Autowired
+    TaskRepository taskRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -28,8 +34,19 @@ public class BootStrapData implements CommandLineRunner {
 
         Project projectA = new Project("Gestor de software",
                 "Software dedicado par la gestión de proyectos de software");
-        projectA.setStatus(Status.ACTIVE);
+        projectA.setStatus(ProjectStatus.ACTIVE);
         projectA.setStartDate(new Date());
-        projectRepository.save(projectA);
+        //projectRepository.save(projectA);
+
+        List<Project> projects = projectRepository.findAll();
+
+        Task task = new Task("Arreglar el problema");
+        task.setProject(projects.get(0));
+
+        System.out.println(projects.get(0).getName());
+        task.setStartDate(new Date());
+        //taskRepository.save(task);
+
+
     }
 }

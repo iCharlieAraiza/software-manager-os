@@ -15,7 +15,7 @@ public class Project {
     private Date endDate;
 
     @Enumerated(EnumType.ORDINAL)
-    private Status status;
+    private ProjectStatus status;
 
     public Project(){}
 
@@ -61,11 +61,11 @@ public class Project {
         this.endDate = endDate;
     }
 
-    public Status getStatus() {
+    public ProjectStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(ProjectStatus status) {
         this.status = status;
     }
 
@@ -76,4 +76,7 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+
 }
