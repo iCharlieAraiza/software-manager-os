@@ -24,9 +24,9 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //createProject();
-        //initProjectData();
-        testDelete();
+        createProject();
+        initProjectData();
+        //testDelete();
     }
 
     public void initProjectData() throws ParseException {

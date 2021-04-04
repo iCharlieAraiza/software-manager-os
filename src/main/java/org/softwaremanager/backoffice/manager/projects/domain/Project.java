@@ -17,7 +17,9 @@ public class Project {
     private String description;
     private Date startDate;
     private Date endDate;
-    private String repositoryUrl;
+
+    @Column(name="remote_repository_url")
+    private String remoteRepositoryUrl;
 
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
