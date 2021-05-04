@@ -24,9 +24,19 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createProject();
-        initProjectData();
+        //createProject();
+        //initProjectData();
         //testDelete();
+
+        showTasks();
+    }
+
+    public void showTasks(){
+        //List<Task> tasks = taskRepository.findAll();
+        //for(Task task : tasks){
+        //    System.out.println(task.getProject().getName());
+        //    System.out.println(task.getPriority());
+        //}
     }
 
     public void initProjectData() throws ParseException {
@@ -34,17 +44,17 @@ public class BootStrapData implements CommandLineRunner {
         SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH");
 
 
-        Project projectA = new Project("Gestor de software",
-                "Software dedicado par la gestión de proyectos de software");
+        //Project projectA = new Project("Gestor de software",
+                //"Software dedicado par la gestión de proyectos de software");
         //projectA.setStatus(ProjectStatus.ACTIVE);
         //projectA.setStartDate(new Date());
         //projectRepository.save(projectA);
 
-        List<Project> projects = projectRepository.findAll();
+        //List<Project> projects = projectRepository.findAll();
         //List<Task> tasks = taskRepository.findAll();
 
         Task task = new Task("Buscar solucionar el problema");
-        task.setProject(projects.get(0));
+        //task.setProject(projects.get(0));
 
         //System.out.println(projects.get(0).getName());
         //task.setStartDate(new Date());
@@ -52,27 +62,27 @@ public class BootStrapData implements CommandLineRunner {
     }
 
     public void createProject(){
-        Project project = new Project("Gestor de software",
-                "Sistema de desarrollo de software de código abierto");
-        project.setStartDate(new Date());
-        projectRepository.save(project);
+        //Project project = new Project("Gestor de software",
+             //   "Sistema de desarrollo de software de código abierto");
+        //project.setStartDate(new Date());
+        //projectRepository.save(project);
     }
 
     public void mapTasksInProjects(){
-        List<Project> projects = projectRepository.findAll();
-        Project project = projects.get(0);
-        System.out.println(project.getName());
+        //List<Project> projects = projectRepository.findAll();
+        //Project project = projects.get(0);
+        //System.out.println(project.getName());
         //System.out.println(project.getTasks().get(0).getName());
-        List<Task> tasks = taskRepository.findAll();
+        //List<Task> tasks = taskRepository.findAll();
 
 
     }
 
     public void testDelete(){
-        Project project = projectRepository.findById(5L).get();
-        System.out.println(project.getName());
+        //Project project = projectRepository.findById(5L).get();
+        //System.out.println(project.getName());
 
-        projectRepository.delete(project);
+        //projectRepository.delete(project);
     }
 
 }

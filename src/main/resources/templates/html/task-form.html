@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/normalize.css">
+    <link href="http://asistentevoz.codigohabil.com/sc/grid.css"rel="stylesheet">
+    <link href=" http://127.0.0.1:5502/font/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/style.css">
+
+    <title>Crear nuevo proyecto</title>
+
+    <style>
+        .submit-container{
+            width: 11rem;
+            margin-left: 2rem;
+        }
+
+        .submit-container input{
+            background-color: #266adf;
+            color: white;
+            margin-top: 5px;
+            padding: 13px;
+            border: 1px solid #a1a1a1;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .submit-container input:hover{
+            opacity: 85%;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+
+<!--- Begin - Top menu -->
+<nav class="menu-top">
+    <div class="logo">
+        <a href="/">SoftTracker</a>
+    </div>
+    <div class="menu">
+        <ul class="module">
+            <li><a th:href="@{/}" class="active">Proyectos</a></li>
+            <li><a th:href="@{/tasks}">Tareas</a></li>
+            <li><a href="http://">Bugs</a></li>
+        </ul>
+    </div>
+    <div class="login-section">
+        <ul>
+            <li><a href="http://" class="language"><i class="fas fa-globe-americas"></i> ES</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"> <i class="fas fa-user"></i> Cerrar sesión</a> </li>
+        </ul>
+    </div>
+</nav>
+<!--- Finish - Top menu -->
+
+<main>
+
+
+    <div class="container">
+        <!---Begin - Header component -->
+        <header>
+            <div class="title">
+                <div class="logo ml-4" style="margin-left: 1rem;"><i class="far fa-edit"></i></div>
+                <h1 class="title">Registro de tareas</h1>
+            </div>
+        </header>
+        <!---Finish - Header component -->
+        <div class="task-container-form">
+            <form action="#" th:action="@{/tasks/saveTask}" th:object="${task}" method="POST" class="row">
+                <input type="hidden" th:field="*{id}" th:value="${task.id}" />
+
+                <div class="form-container form-container-inside">
+                    <div class="title-form">
+                        <img src="http://127.0.0.1:5502/img/infoicon.png" alt="" style="margin-right: 1rem">
+                        <h2 style="margin-right: auto;">Información básica</h2>
+                        <i class="far fa-question-circle"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nombre de la tarea <span style="color: red;">*</span></label>
+                        <div class="form-control">
+                            <input type="text" class="form-control" th:field="*{name}" placeholder="Nombre de la tarea">
+                        </div>
+                    </div>
+
+
+                    <div class="horizontal-form">
+                        <div class="form-group col-lg-6 horizontal">
+                            <label for="">Proyecto</label>
+                            <div class="form-control select-form">
+                                <select th:field="*{project}" required>
+                                    <th:block th:each="pro : ${projects}">
+                                        <option th:text="${pro.name}" th:value="${pro.id}"/>
+                                    </th:block>
+                                </select>
+                                <i class="fas fa-sort-down"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-lg-6 horizontal">
+                            <label for="">Fecha de entrega (plazo)</label>
+                            <div class="form-control">
+                                <input type="date" name="" id="" placeholder="Fecha: dd-mm-aaaa">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group col-lg-6 horizontal">
+                            <label for="">Número de referencia</label>
+                            <div class="form-control">
+                                <input type="type" name="" id="" placeholder="Ej: #123456">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6 horizontal">
+                            <label for="">Prioridad</label>
+                            <div class="form-control select-form">
+                                <select  th:field="*{priority}">
+                                    <option value="LOW">Normal</option>
+                                    <option value="MEDIUM">Media</option>
+                                    <option value="HIGH">Alta</option>
+                                </select>
+                                <i class="fas fa-sort-down"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" style="margin-top: -5px;">Descripción</label>
+                        <div class="form-control">
+                            <textarea id="" cols="30" rows="10" th:field="*{description}"></textarea>
+                        </div>
+                    </div>
+                </div>
+        <div class="btn-section-task">
+            <input type="submit" class="btn main-btn" value="Crear">
+        </div>
+        </form>
+    </div>
+</main>
+
+
+</body>
+</html>

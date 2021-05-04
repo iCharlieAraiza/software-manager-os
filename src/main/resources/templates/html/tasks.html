@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/normalize.css">
+    <link href="http://asistentevoz.codigohabil.com/sc/grid.css"rel="stylesheet">
+    <link href=" http://127.0.0.1:5502/font/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/style.css">
+
+    <title>Página de tareas</title>
+</head>
+<body>
+
+
+<!--- Begin - Top menu -->
+<nav class="menu-top">
+    <div class="logo">
+        <a href="/">SoftTracker</a>
+    </div>
+    <div class="menu">
+        <ul class="module">
+            <li><a th:href="@{/}" class="active">Proyectos</a></li>
+            <li><a th:href="@{/tasks}">Tareas</a></li>
+            <li><a href="http://">Bugs</a></li>
+        </ul>
+    </div>
+    <div class="login-section">
+        <ul>
+            <li><a href="http://" class="language"><i class="fas fa-globe-americas"></i> ES</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"> <i class="fas fa-user"></i> Cerrar sesión</a> </li>
+        </ul>
+    </div>
+</nav>
+<!--- Finish - Top menu -->
+
+<main>
+    <div class="container">
+
+        <!---Begin - Header component -->
+        <header>
+            <div class="title">
+                <div class="logo"><i class="fas fa-clipboard-check"></i></div>
+                <h1 class="title">Lista de tareas</h1>
+            </div>
+
+            <div class="action-page">
+                <a class="main-btn" th:href="@{/tasks/create}">Crear tarea</a>
+
+            </div>
+        </header>
+        <!---Finish - Header component -->
+
+
+        <!---Begin - Filter component -->
+        <div class="filter-component">
+            <div class="form">
+                <div class="search-form">
+                    <button class="search-icon"><i class="fas fa-search"></i></button>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                <div class="filter-handle">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Mostrar solo activos</label>
+                </div>
+            </div>
+
+        </div>
+        <!---Finish - filter component-->
+
+        <section class="card-container">
+            <div class="row">
+
+                <!--- Begin: Card section title -->
+
+                <div class="col-12 task-section-description row">
+                    <div class="col-5">
+                        <div class="section-title">
+                            <span><i class="fas fa-list-ul"></i> Tarea</span>
+                        </div>
+                    </div>
+
+                    <div class="description-sec col-7 row">
+                        <div class="section-title col-2">
+                            <span>Prioridad</span>
+                        </div>
+                        <div class="section-title col-2">
+                            <span>Fase</span>
+                        </div>
+                        <div class="section-title col-2">
+                            <span>Estim. (min)</span>
+                        </div>
+                        <div class="section-title col-2">
+                            <span>Real. (min)</span>
+                        </div>
+                        <div class="section-title col-2">
+                            <span> <i class="far fa-calendar-check"></i>Fecha</span>
+                        </div>
+                        <div class="section-title col-2"></div>
+                    </div>
+
+                </div>
+
+                <!--- End: Card sectopm title  -->
+
+
+                <!---Begin: Card task  -->
+                <th:block th:each="task : ${taskList}">
+                <div class="task-card col-12" th:class="${task.statusCheck == 'COMPLETE' } ? 'task-card col-12 inactive' : 'task-card col-12' " >
+                    <div class="task-container row">
+                        <div class="description-card col-5 row">
+                            <div class="task-section">
+                                <th:block th:switch="${task.statusCheck}">
+                                    <a th:case=" 'COMPLETE' " th:href="@{'/tasks/check/' + ${task.id}}"><i class="fas fa-check-square"></i></a>
+                                    <a th:case="*" th:href="@{'/tasks/check/' + ${task.id}}"><i class="far fa-square"></i></a>
+                                </th:block>
+
+                            </div>
+                            <div class="desc-wrapp">
+                                <div class="title">
+                                    <h2> <span class="title" th:text="${task.name}"></span> - <span class="proyect-name" th:text="${task.project.name}">Nombre del proyecto</span></h2>
+                                </div>
+                                <div class="description">
+                                    <span th:text="${task.description}"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="details-task col-7 row">
+                            <div class="details col-2">
+
+
+
+                                <th:block th:switch="${task.priority}">
+                                    <div th:case="'MEDIUM'" class="tag medium">Media</div>
+                                    <div th:case="'HIGH'" class="tag priority">Alta</div>
+                                    <div th:case="*" class="tag regular">Normal</div>
+                                </th:block>
+
+                            </div>
+                            <div class="details col-2">
+                                <div>
+                                    Desarrollo
+                                </div>
+                            </div>
+                            <div class="details col-2">
+                                <div class="min">
+                                    180
+                                </div>
+                            </div>
+                            <div class="details col-2">
+                                <div class="min">
+                                    190
+                                </div>
+                            </div>
+                            <div class="details col-2">
+                                <div class="date">
+                                    19/02/2021
+                                </div>
+                            </div>
+                            <div class="details col-2">
+                                <a th:href="@{'/tasks/edit/' + ${task.id}}" class="edit-btn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                </th:block>
+                <!---End: Card project  -->
+
+
+
+
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+
+
+</body>
+</html>

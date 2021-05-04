@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/normalize.css">
+    <link href="http://asistentevoz.codigohabil.com/sc/grid.css"rel="stylesheet">
+    <link href=" http://127.0.0.1:5502/font/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/style.css">
+
+    <style>
+        .status-wrap{
+            display: flex;
+            align-items: center;
+        }
+
+        .title-card span{
+            font-size: 18px;
+        }
+    </style>
+
+    <title>Página de proyectos</title>
+</head>
+<body>
+
+
+<!--- Begin - Top menu -->
+<nav class="menu-top">
+    <div class="logo">
+        <a href="/">SoftTracker</a>
+    </div>
+    <div class="menu">
+        <ul class="module">
+            <li><a th:href="@{/}" class="active">Proyectos</a></li>
+            <li><a th:href="@{/tasks}">Tareas</a></li>
+            <li><a href="http://">Bugs</a></li>
+        </ul>
+    </div>
+    <div class="login-section">
+        <ul>
+            <li><a href="http://" class="language"><i class="fas fa-globe-americas"></i> ES</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"> <i class="fas fa-user"></i> Cerrar sesión</a> </li>
+        </ul>
+    </div>
+</nav>
+<!--- Finish - Top menu -->
+
+
+<main>
+    <div class="container">
+
+        <!---Begin - Header component -->
+        <header>
+            <div class="title">
+                <div class="logo"><i class="fas fa-layer-group"></i></div>
+                <h1 class="title">Lista de proyectos</h1>
+            </div>
+
+            <div class="action-page">
+                <a th:href="@{/project/create}" class="main-btn">Crear proyecto</a>
+            </div>
+        </header>
+        <!---Finish - Header component -->
+
+
+        <!---Begin - Filter component -->
+        <div class="filter-component">
+            <div class="form">
+                <div class="search-form">
+                    <button class="search-icon"><i class="fas fa-search"></i></button>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                <div class="filter-handle">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Mostrar solo activos</label>
+                </div>
+            </div>
+
+        </div>
+        <!---Finish - filter component-->
+
+        <section class="card-container">
+            <div class="row">
+
+                <!---Begin: Card project  -->
+                <div class="card col-md-4" th:each="project : ${listProjects}">
+                    <div th:class="'base '+${project.status_project=='STAND_BY' ? 'project-card inactived ' : 'project-card'}">
+                        <div class="title-card"  th:switch="${project.status_project}">
+
+                            <h2 th:case="'COMPLETED'"><i class="fas fa-check-circle" style="
+                                color: #0557d0;
+                                font-size: 19px;
+                                margin-right: 3px;
+                            "></i><span th:text="${project.name}"></span></h2>
+
+                            <h2 th:case="'STAND_BY'"><span th:text="${project.name}"></span></h2>
+
+                            <h2 th:case="'ACTIVE'"><span th:text="${project.name}"></span></h2>
+
+                                <div class="more-btn">
+                                    <div class="more"><a th:href="@{'/project/edit/' + ${project.id}}"><i class="fas fa-ellipsis-h"></i></a></div>
+                                </div>
+                        </div>
+                        <div class="description-container">
+                            <p class="description" th:text="${project.description}">
+
+                            </p>
+                        </div>
+
+                        <div class="project-description">
+                            <div class="start-date section">
+                                <h3>Plazo</h3>
+                                <div class="term-limit">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <p class="p">10/02/2021</p>
+                                </div>
+                            </div>
+                            <div class="task-complete section">
+                                <h3>Porcentaje</h3>
+                                <div class="percent">
+                                    <p>96%</p>
+                                </div>
+                            </div>
+                            <div class="status section">
+                                <h3>Estado</h3>
+                                <div class="status-container">
+                                    <div class="status-container" th:switch="${project.status_project}">
+                                        <div th:case="'ACTIVE'" class="status-wrap">
+                                            <p>Activo</p> <span class="active status-sign"></span>
+                                        </div>
+
+                                        <div th:case="'COMPLETED'" class="status-wrap">
+                                            <p>Completo</p> <span class="completed status-sign"></span>
+                                        </div>
+
+                                        <div th:case="'STAND_BY'" class="status-wrap">
+                                            <p>Inactivo</p> <span class="disabled status-sign"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---End: Card project  -->
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+
+
+</body>
+</html>

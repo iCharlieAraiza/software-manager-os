@@ -1,0 +1,522 @@
+* {
+    font-size: 15px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #F7F8FC;
+}
+
+a {
+    text-decoration: none;
+    color: #266adf;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+.menu-top {
+    -webkit-box-shadow: 0 6px 6px -2px #b3b3b3;
+    box-shadow: 0 6px 6px -2px #b3b3b3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.menu-top a {
+    font-weight: 800;
+}
+
+.menu-top .menu {
+    margin-right: auto;
+}
+
+.menu-top .menu a {
+    color: #A0A0A0;
+}
+
+.menu-top ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+.menu-top ul li {
+    margin: 0 1rem;
+}
+
+.menu-top a.active, .menu-top .login-section a {
+    color: #2A3753;
+}
+
+.menu-top a.active:hover, .menu-top .login-section a:hover {
+    color: #9e9e9e;
+}
+
+.login-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.login-section i {
+    color: #A0A0A0;
+    margin-right: 5px;
+}
+
+.filter-component {
+    color: #A0A0A0;
+    font-size: 14px;
+}
+
+.filter-component .form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.filter-component .search-form {
+    border-bottom: 1px solid #8f8f8f;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 300px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.filter-component .search-form input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: 5px;
+}
+
+.filter-component .search-form input:focus {
+    outline: none;
+}
+
+h1 {
+    font-size: 20px;
+    color: #938E8E;
+}
+
+header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+header .title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+header .title i {
+    font-size: 22px;
+    color: #A0A0A0;
+    margin-right: 10px;
+    opacity: 80%;
+}
+
+.main-btn {
+    background-color: #266adf;
+    padding: 7px 1.5rem;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #707070;
+    -webkit-box-shadow: 0 6px 6px -2px #b3b3b3;
+    box-shadow: 0 6px 6px -2px #b3b3b3;
+    cursor: pointer;
+}
+
+.main-btn:hover {
+    opacity: 80%;
+}
+
+.search-icon {
+    border: none;
+    background-color: transparent;
+    color: #938E8E;
+}
+
+.card-container {
+    margin-top: 2rem;
+}
+
+.card {
+    margin: 10px 0;
+}
+
+.project-card {
+    background-color: white;
+    padding: 1.5rem 1.5rem;
+    border-radius: 8px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-shadow: 0 6px 6px -2px #b3b3b3;
+    box-shadow: 0 6px 6px -2px #b3b3b3;
+}
+
+.project-card.inactived {
+    opacity: 60%;
+    background-color: #e7e7e7;
+}
+
+.project-card.inactived h2 {
+    color: #A0A0A0;
+}
+
+.project-card h2 {
+    color: #2A3753;
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.project-card h3, .project-card p, .project-card i {
+    color: #938E8E;
+}
+
+.project-card .title-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.project-card .more-btn {
+    font-size: 26px;
+    color: #a1a1a1;
+}
+
+.project-card .more-btn i {
+    font-size: 20px;
+}
+
+.project-card .description-container {
+    margin-top: 1.5rem;
+}
+
+.project-card .description-container p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.project-card .project-description {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.project-card .project-description .section {
+    width: 33%;
+    min-width: 6.5rem;
+}
+
+.project-card .project-description .section p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.project-card .project-description h3 {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.project-card .term-limit {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.project-card .term-limit i {
+    margin-right: 3px;
+}
+
+.project-card .status-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.project-card .status-sign {
+    width: 12px;
+    height: 12px;
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #414141;
+    margin-left: 5px;
+}
+
+.project-card .active {
+    background-color: #3DD137;
+}
+
+.project-card .completed {
+    background-color: #266adf;
+}
+
+.project-card .disabled {
+    background-color: transparent;
+}
+
+@media (min-width: 992px) {
+    .project-card .description-container p {
+        height: 2rem;
+    }
+}
+
+.login-container {
+    font-size: 15px;
+}
+
+.login-container h1 {
+    color: #2A3753;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 3rem;
+}
+
+.login-container h1 i {
+    font-size: 30px;
+    color: #266adf;
+}
+
+.login-container form {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 1.6rem 2rem;
+    -webkit-box-shadow: 0 6px 6px -2px #b3b3b3;
+    box-shadow: 0 6px 6px -2px #b3b3b3;
+}
+
+.login-container form input {
+    width: 100%;
+}
+
+.btn-sign {
+    background-color: #266adf;
+    color: white;
+    margin-top: 5px;
+    padding: 13px;
+    border: 1px solid #a1a1a1;
+    font-weight: 500;
+}
+
+.btn-sign:hover {
+    opacity: 80%;
+}
+
+.form-group {
+    margin: 1rem 0;
+}
+
+.form-group label {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.form-group label i {
+    color: #a5a5a5;
+    font-size: 13px;
+    margin-right: 7px;
+}
+
+.form-control {
+    position: relative;
+    width: 100%;
+    margin: 12px 0;
+}
+
+.form-control input, .form-control select, .form-control textarea {
+    padding: 10px !important;
+    border: 1px solid silver;
+    border-radius: 1px;
+    -webkit-appearance: none;
+}
+
+.form-control select {
+    position: relative;
+    z-index: 2;
+}
+
+.form-control .fa-sort-down {
+    position: absolute;
+    top: 25%;
+    right: 18px;
+    z-index: 0;
+}
+
+form label, form p {
+    color: #676767;
+}
+
+.form-container-inside {
+    margin: 1rem;
+    padding: 1rem 2.5rem;
+    background-color: white;
+    -webkit-box-shadow: 0 6px 6px -2px #b3b3b3;
+    box-shadow: 0 6px 6px -2px #b3b3b3;
+}
+
+.form-container-inside h2 {
+    color: #2A3753;
+    font-size: 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.form-container-inside .form-group input, .form-container-inside .form-group select, .form-container-inside .form-group textarea {
+    width: 100%;
+}
+
+.form-container-inside .form-group select {
+    background-color: transparent;
+}
+
+.form-container-inside .select-form {
+    background-color: #F7F7F7;
+}
+
+.form-container-inside .title-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.form-container-inside .title-form .fa-question-circle {
+    font-size: 26px;
+    color: #d8d8d8;
+}
+
+.form-container-inside label {
+    display: block !important;
+    margin: 24px 0;
+}
+
+.horizontal-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.horizontal-form .horizontal {
+    padding-left: 0;
+    margin-top: 3px;
+}
+
+.horizontal-form label {
+    margin-top: 0;
+}
+
+.bd-example > :last-child {
+    margin-bottom: 0;
+}
+
+select {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist;
+    appearance: menulist;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    background-color: -internal-light-dark(white, #3b3b3b);
+    cursor: default;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    border-radius: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: -internal-light-dark(#767676, #858585);
+    -o-border-image: initial;
+    border-image: initial;
+}
+
+select:not(:-internal-list-box) {
+    overflow: visible !important;
+}
+/*# sourceMappingURL=style.css.map */

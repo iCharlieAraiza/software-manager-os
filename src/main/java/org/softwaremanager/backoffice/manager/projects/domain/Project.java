@@ -1,6 +1,9 @@
 package org.softwaremanager.backoffice.manager.projects.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.softwaremanager.backoffice.manager.tasks.domain.Task;
 
 import javax.persistence.*;
@@ -8,6 +11,8 @@ import java.util.*;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude="tasks")
+
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,27 +25,28 @@ public class Project {
 
     @Column(name="remote_repository_url")
     private String remoteRepositoryUrl;
-
-
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore
     Set<Task> tasks = new HashSet<>();
 
 
-    @Enumerated(EnumType.ORDINAL)
-    private ProjectStatus status = ProjectStatus.ACTIVE;
+    private String status_project = "ACTIVE";
 
     public Project(){
         this.startDate = new Date();
     }
 
-    public Project(String name, Date startDate){
-        this.name = name;
-        this.startDate = startDate;
-    }
-
-    public Project(String name, String description) {
-        this.name = name;
-        this.description = description;
-        this.startDate = new Date();
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", remoteRepositoryUrl='" + remoteRepositoryUrl + '\'' +
+                ", status_project='" + status_project + '\'' +
+                '}';
     }
 }

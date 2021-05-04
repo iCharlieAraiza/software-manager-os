@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/normalize.css">
+    <link href="http://asistentevoz.codigohabil.com/sc/grid.css"rel="stylesheet">
+    <link href=" http://127.0.0.1:5502/font/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/style.css">
+
+    <title>Crear nuevo proyecto</title>
+
+    <style>
+        .submit-container{
+            width: 11rem;
+            margin-left: 2rem;
+        }
+
+        .submit-container input{
+            background-color: #266adf;
+            color: white;
+            margin-top: 5px;
+            padding: 13px;
+            border: 1px solid #a1a1a1;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .submit-container input:hover{
+            opacity: 85%;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+
+<!--- Begin - Top menu -->
+<nav class="menu-top">
+    <div class="logo">
+        <a href="/">SoftTracker</a>
+    </div>
+    <div class="menu">
+        <ul class="module">
+            <li><a th:href="@{/}" class="active">Proyectos</a></li>
+            <li><a th:href="@{/tasks}">Tareas</a></li>
+            <li><a href="http://">Bugs</a></li>
+        </ul>
+    </div>
+    <div class="login-section">
+        <ul>
+            <li><a href="http://" class="language"><i class="fas fa-globe-americas"></i> ES</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"> <i class="fas fa-user"></i> Cerrar sesión</a> </li>
+        </ul>
+    </div>
+</nav>
+<!--- Finish - Top menu -->
+
+<main>
+
+
+    <div class="container">
+        <!---Begin - Header component -->
+        <header>
+            <div class="title">
+                <div class="logo ml-4" style="margin-left: 1rem;"><i class="far fa-edit"></i></div>
+                <h1 class="title">Registro de proyectos</h1>
+            </div>
+        </header>
+        <!---Finish - Header component -->
+        <div class="">
+            <form action="#" th:action="@{/project/saveProject}" th:object="${project}"
+                  method="POST" class="row">
+                <input type="hidden" th:field="*{id}" th:value="${project.id}" />
+                <div class="col-md-6">
+                    <div class="form-container form-container-inside">
+                        <div class="title-form">
+                            <img src="http://127.0.0.1:5502/img/infoicon.png" alt="" style="margin-right: 1rem">
+                            <h2 style="margin-right: auto;">Información básica</h2>
+                            <i class="far fa-question-circle"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nombre del proyecto <span style="color: red;">*</span></label>
+                            <div class="form-control">
+                                <input type="text" th:field="*{name}" id="name-project" placeholder="Nombre del proyecto" required>
+                            </div>
+                        </div>
+
+
+                        <div class="horizontal-form">
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">Fecha de inicio <span style="color: red;">*</span></label>
+                                <div class="form-control">
+                                    <input type="date" name="" id="" placeholder="Fecha: dd-mm-aaaa">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">Fecha de entrega (plazo)</label>
+                                <div class="form-control">
+                                    <input type="date" name=""  placeholder="Fecha: dd-mm-aaaa">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">Estado del proyecto</label>
+                                <div class="form-control select-form">
+                                    <select th:field="*{status_project}">
+                                        <option value="ACTIVE">Activo</option>
+                                        <option value="COMPLETED">Completo</option>
+                                        <option value="STAND_BY">Inactivo</option>
+                                    </select>
+                                    <i class="fas fa-sort-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">Número de referencia</label>
+                                <div class="form-control">
+                                    <input type="type" name="" id="" placeholder="Ej: #123456">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" style="margin-top: -5px;">Descripción</label>
+                            <div class="form-control">
+                                <textarea th:field="*{description}" name="" id="" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--- Begin: Form component-->
+                <div class="col-md-6">
+                    <div class="form-container form-container-inside">
+                        <div class="title-form">
+                            <h2>Detalles técnicos</h2>
+                            <i class="far fa-question-circle"></i>
+                        </div>
+
+                        <div class="horizontal-form">
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">Tipo de proyecto</label>
+                                <div class="form-control select-form">
+                                    <select>
+                                        <option value="0">Software</option>
+                                        <option value="1">Servicios</option>
+                                        <option value="2">Otro</option>
+                                    </select>
+                                    <i class="fas fa-sort-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">Lenguaje/s de programación</label>
+                                <div class="form-control">
+                                    <input type="type" name="" id="" placeholder="Ej: PHP, Java, C++">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="horizontal-form">
+
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">URL del repositorio externo</label>
+                                <div class="form-control">
+                                    <input type="type" name="" id="" placeholder="Ej: GitHub, GitLab, etc.">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-6 horizontal">
+                                <label for="">Horas hombre (estimadas)</label>
+                                <div class="form-control">
+                                    <input type="number" min="0" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--- End: Form component-->
+                <div class="form-control submit-container">
+
+
+                    <input th:if="${project.id == null}" type="submit" name="login-submit" id="login-submit"
+                           class="form-control btn btn-primary" value="Crear" />
+                    <input th:unless="${project.id == null}" type="submit" name="login-submit" id="login-submit"
+                           class="form-control btn btn-primary" value="Editar" />
+                </div>
+        </form>
+    </div>
+</main>
+
+
+</body>
+</html>
+
+
+

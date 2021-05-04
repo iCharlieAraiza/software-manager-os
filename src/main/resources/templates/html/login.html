@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/normalize.css">
+    <link href="http://asistentevoz.codigohabil.com/sc/grid.css"rel="stylesheet">
+    <link href=" http://127.0.0.1:5502/font/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://127.0.0.1:5502/css/style.css">
+
+
+    <title>Página de proyectos</title>
+</head>
+<body>
+<!--- Begin - Top menu -->
+<nav class="menu-top">
+    <div class="logo">
+        <a href="/">SoftTracker</a>
+    </div>
+    <div class="menu">
+        <ul class="module">
+            <li><a href="http://" class="active">Proyectos</a></li>
+            <li><a href="http://">Tareas</a></li>
+            <li><a href="http://">Bugs</a></li>
+        </ul>
+    </div>
+    <div class="login-section">
+        <ul>
+            <li><a href="http://" class="language"><i class="fas fa-globe-americas"></i> ES</a></li>
+            <li><a href="http://"><i class="fas fa-user"></i> Iniciar sesión</a></li>
+        </ul>
+    </div>
+</nav>
+<!--- Finish - Top menu -->
+
+<main>
+    <div class="container" style="margin-top: 6rem;">
+
+        <div class="form-container login-container">
+            <div class="title-sign">
+                <h1> <i class="fas fa-arrow-circle-right"></i> Iniciar sesión</h1>
+            </div>
+
+            <form th:action="@{/login}" method="post">
+
+                <div class="form-group">
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">Nombre de usuario o correo es incorrecto.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for=""><i class="fas fa-user"></i> Correo electrónico</label>
+                    <div class="form-control">
+                        <input type="text" class = "form-control" id ="username" name = "username"
+                               placeholder="Ej: nombre@correo.com" autofocus="autofocus">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=""><i class="fas fa-lock"></i> Contraseña</label>
+                    <div class="form-control">
+                        <input type="password"  id="password" name="password" placeholder="Contraseña">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="login-submit" id="login-submit"
+                           class="btn btn-sign" value="Log In" />
+                </div>
+
+                <p style="text-align: right;">¿No tienes cuenta? <a href="/" th:href="@{/registration}">Registrate aquí</a></p>
+
+            </form>
+        </div>
+
+    </div>
+</main>
+
+
+</body>
+</html>

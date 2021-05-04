@@ -16,8 +16,8 @@ public class Task {
     private String name;
     @Lob
     private String description;
-    @Enumerated(EnumType.ORDINAL)
-    private TaskStatus status;
+    private String statusCheck = "INCOMPLETE";
+    private String priority;
     private Date startDate;
     @Temporal(TemporalType.TIME)
     private Date finishDate;
@@ -26,11 +26,11 @@ public class Task {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    public Task(){ }
+    public Task(){
+    }
 
     public Task(String name) {
         this.name = name;
-        this.status = TaskStatus.INCOMPLETE;
     }
 
 }
