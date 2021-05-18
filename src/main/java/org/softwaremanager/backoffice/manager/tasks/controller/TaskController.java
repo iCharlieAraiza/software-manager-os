@@ -57,11 +57,7 @@ public class TaskController {
     @GetMapping("/check/{id}")
     public String check(@PathVariable("id") Long id){
         Task task = taskRepository.findById(id).get();
-        if(task.getStatusCheck().equals("COMPLETE")){
-            task.setStatusCheck("INCOMPLETE");
-        }else{
-            task.setStatusCheck("COMPLETE");
-        }
+
 
         taskRepository.save(task);
         return "redirect:/tasks";

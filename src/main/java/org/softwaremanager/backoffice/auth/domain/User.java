@@ -20,6 +20,10 @@ public class User {
 
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Profile userProfile;
+
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",

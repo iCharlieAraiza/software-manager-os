@@ -12,15 +12,28 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String name;
+
     @Lob
     private String description;
-    private String statusCheck = "INCOMPLETE";
-    private String priority;
-    private Date startDate;
+
+    @Enumerated
+    private TaskStatus status;
+
+    @Enumerated
+    private Priority priority;
+
+    private Integer planTime;
+
+    private Integer actualTime;
+
     @Temporal(TemporalType.TIME)
-    private Date finishDate;
+    private Date startDate;
+
+    @Temporal(TemporalType.TIME)
+    private Date endDate;
 
     @ManyToOne
     @JoinColumn(name = "project_id")
