@@ -62,7 +62,6 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", status_project='" + status.toString() + '\'' +
                 '}';
     }
 }
