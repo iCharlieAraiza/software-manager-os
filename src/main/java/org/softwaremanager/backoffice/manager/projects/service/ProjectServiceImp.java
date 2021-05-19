@@ -25,12 +25,16 @@ public class ProjectServiceImp implements ProjectService{
 
     @Override
     public List<ProjectDto> findAll(Pageable pageable) {
+
         List<Project> projects = projectRepository.findAll(pageable).getContent();
+        
         if(projects.isEmpty()){
            return null;
         }else{
+
             ModelMapper modelMapper = new ModelMapper();
             List<ProjectDto> projectDtoList = new ArrayList<>();
+
             projects.forEach(project -> {
                 ProjectDto projectDto = modelMapper.map(project, ProjectDto.class);
 
@@ -40,6 +44,7 @@ public class ProjectServiceImp implements ProjectService{
                     for(User userReference : project.getUsersByProjects()){
                         user = userReference;
                     }
+
                     UserInfoDto userInfoDto = modelMapper.map(user, UserInfoDto.class);
                     projectDto.setUserInfo( userInfoDto );
                 }

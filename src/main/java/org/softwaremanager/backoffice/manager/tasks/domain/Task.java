@@ -29,6 +29,8 @@ public class Task {
 
     private Integer actualTime;
 
+    private Integer sprint;
+
     @Temporal(TemporalType.TIME)
     private Date startDate;
 

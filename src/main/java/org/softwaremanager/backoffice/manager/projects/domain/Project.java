@@ -33,6 +33,7 @@ public class Project {
     private ProjectDetails projectDetails;
 
 
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="projects_users",
             joinColumns = @JoinColumn(
