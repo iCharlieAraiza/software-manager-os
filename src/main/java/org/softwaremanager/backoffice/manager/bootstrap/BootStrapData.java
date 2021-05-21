@@ -1,18 +1,29 @@
 package org.softwaremanager.backoffice.manager.bootstrap;
 
+import org.softwaremanager.backoffice.auth.domain.User;
+import org.softwaremanager.backoffice.auth.repository.UserRepository;
+import org.softwaremanager.backoffice.auth.service.UserServiceImpl;
 import org.softwaremanager.backoffice.manager.projects.domain.Project;
-import org.softwaremanager.backoffice.manager.projects.domain.ProjectStatus;
+import org.softwaremanager.backoffice.manager.projects.domain.ProjectDetails;
+import org.softwaremanager.backoffice.manager.projects.domain.TypeOfProject;
+import org.softwaremanager.backoffice.manager.projects.domain.dto.ProjectInfoDto;
 import org.softwaremanager.backoffice.manager.projects.repository.ProjectRepository;
+import org.softwaremanager.backoffice.manager.projects.repository.TypeOfProjectRepository;
+import org.softwaremanager.backoffice.manager.projects.service.ProjectService;
 import org.softwaremanager.backoffice.manager.tasks.domain.Task;
 import org.softwaremanager.backoffice.manager.tasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
+
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -22,13 +33,36 @@ public class BootStrapData implements CommandLineRunner {
     @Autowired
     TaskRepository taskRepository;
 
+    @Autowired
+    TypeOfProjectRepository topRepository;
+
+    @Autowired
+    UserServiceImpl userService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ProjectService projectService;
+
+
+
     @Override
     public void run(String... args) throws Exception {
         //createProject();
         //initProjectData();
         //testDelete();
 
-        showTasks();
+        //showTasks();
+
+        //initTop();
+        //initProject();
+        //taskAndUser();
+
+        //getProjectsByUser();
+        getProjectByDto();
+
+
     }
 
     public void showTasks(){
@@ -83,6 +117,54 @@ public class BootStrapData implements CommandLineRunner {
         //System.out.println(project.getName());
 
         //projectRepository.delete(project);
+    }
+
+    public void initTop(){
+        TypeOfProject top = new TypeOfProject();
+        top.setName("Software");
+        top.setDescription("Software and development project");
+
+        topRepository.save(top);
+
+    }
+
+    public void initProject(){
+        Project project = new Project();
+        ProjectDetails details = new ProjectDetails();
+        TypeOfProject top = topRepository.getOne(1L);
+
+        details.setTop( top );
+        details.setHours(69);
+        project.setName( "Bugtracker component" );
+        project.setProjectDetails( details );
+        project.setDescription( "This is a test project" );
+
+        projectRepository.save( project );
+    }
+
+    public void taskAndUser(){
+        User currentUser = userRepository.findByEmail("test");
+        Project project = projectRepository.findById(1L).get();
+        project.setUsersByProjects(Collections.singletonList(currentUser));
+
+        projectRepository.save(project);
+    }
+
+    public void getProjectsByUser(){
+
+        if(projectRepository.findById(1L).isPresent()){
+            Project project = projectRepository.findById(1L).get();
+            project.getUsersByProjects().forEach(user -> System.out.println(user.getEmail()));
+        }
+
+    }
+
+    public void getProjectByDto(){
+        Pageable inverseSorted = PageRequest.of(0, 5, Sort.by("id").descending());
+        List<ProjectInfoDto> projectDtoList = projectService.findAll(inverseSorted);
+
+        projectDtoList.forEach(System.out::println);
+
     }
 
 }
