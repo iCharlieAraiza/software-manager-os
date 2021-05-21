@@ -32,8 +32,6 @@ public class Project {
     @JoinColumn(name = "project_details_fk")
     private ProjectDetails projectDetails;
 
-
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="projects_users",
             joinColumns = @JoinColumn(
@@ -42,7 +40,6 @@ public class Project {
                     name = "user_id", referencedColumnName = "id")
     )
     private Collection<User> usersByProjects;
-
 
     @ToString.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "project", cascade = CascadeType.ALL)

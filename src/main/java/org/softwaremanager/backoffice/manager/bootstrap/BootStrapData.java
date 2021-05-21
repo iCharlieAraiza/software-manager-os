@@ -6,7 +6,7 @@ import org.softwaremanager.backoffice.auth.service.UserServiceImpl;
 import org.softwaremanager.backoffice.manager.projects.domain.Project;
 import org.softwaremanager.backoffice.manager.projects.domain.ProjectDetails;
 import org.softwaremanager.backoffice.manager.projects.domain.TypeOfProject;
-import org.softwaremanager.backoffice.manager.projects.domain.dto.ProjectDto;
+import org.softwaremanager.backoffice.manager.projects.domain.dto.ProjectInfoDto;
 import org.softwaremanager.backoffice.manager.projects.repository.ProjectRepository;
 import org.softwaremanager.backoffice.manager.projects.repository.TypeOfProjectRepository;
 import org.softwaremanager.backoffice.manager.projects.service.ProjectService;
@@ -21,10 +21,8 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 
 @Component
@@ -163,7 +161,7 @@ public class BootStrapData implements CommandLineRunner {
 
     public void getProjectByDto(){
         Pageable inverseSorted = PageRequest.of(0, 5, Sort.by("id").descending());
-        List<ProjectDto> projectDtoList = projectService.findAll(inverseSorted);
+        List<ProjectInfoDto> projectDtoList = projectService.findAll(inverseSorted);
 
         projectDtoList.forEach(System.out::println);
 

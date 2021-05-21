@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.softwaremanager.backoffice.auth.domain.User;
 import org.softwaremanager.backoffice.auth.web.dto.UserInfoDto;
 import org.softwaremanager.backoffice.manager.projects.domain.Project;
-import org.softwaremanager.backoffice.manager.projects.domain.dto.ProjectDto;
+import org.softwaremanager.backoffice.manager.projects.domain.dto.ProjectInfoDto;
 import org.softwaremanager.backoffice.manager.projects.repository.ProjectRepository;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class ProjectServiceImp implements ProjectService{
 
 
     @Override
-    public List<ProjectDto> findAll(Pageable pageable) {
+    public List<ProjectInfoDto> findAll(Pageable pageable) {
 
         List<Project> projects = projectRepository.findAll(pageable).getContent();
         
@@ -33,10 +33,10 @@ public class ProjectServiceImp implements ProjectService{
         }else{
 
             ModelMapper modelMapper = new ModelMapper();
-            List<ProjectDto> projectDtoList = new ArrayList<>();
+            List<ProjectInfoDto> projectDtoList = new ArrayList<>();
 
             projects.forEach(project -> {
-                ProjectDto projectDto = modelMapper.map(project, ProjectDto.class);
+                ProjectInfoDto projectDto = modelMapper.map(project, ProjectInfoDto.class);
 
                 if(!project.getUsersByProjects().isEmpty()){
                     User user = new User();
