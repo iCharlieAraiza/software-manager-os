@@ -19,9 +19,11 @@ public class ApiProjectController {
         this.repository = repository;
     }
 
+    public ApiProjectController() {}
+
     @GetMapping
     public List<Project> showProjects(){
-        List<Project> projects = new ArrayList<>();
+        List<Project> projects;
         projects = repository.findAll();
         return projects;
     }

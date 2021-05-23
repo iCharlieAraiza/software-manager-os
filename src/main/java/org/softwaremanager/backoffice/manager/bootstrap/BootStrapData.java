@@ -60,8 +60,9 @@ public class BootStrapData implements CommandLineRunner {
         //taskAndUser();
 
         //getProjectsByUser();
-        getProjectByDto();
+        //getProjectByDto();
 
+        //getProject();
 
     }
 
@@ -165,6 +166,11 @@ public class BootStrapData implements CommandLineRunner {
 
         projectDtoList.forEach(System.out::println);
 
+    }
+
+    public void getProject(){
+        Project project = projectRepository.findById(1L).get();
+        System.out.println(project.toString());
     }
 
 }

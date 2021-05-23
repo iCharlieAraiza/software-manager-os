@@ -23,6 +23,10 @@ public class ProjectInfoDto {
     public ProjectInfoDto(){}
 
     public ProjectInfoDto(Project project){
+        if( project==null){
+            throw new NullPointerException( "There are not project define" );
+        }
+
         ModelMapper modelMapper = new ModelMapper();
         ProjectInfoDto dto = modelMapper.map(project, ProjectInfoDto.class);
 
