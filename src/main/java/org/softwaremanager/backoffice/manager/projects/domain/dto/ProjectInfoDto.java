@@ -22,24 +22,6 @@ public class ProjectInfoDto {
 
     public ProjectInfoDto(){}
 
-    public ProjectInfoDto(Project project){
-        if( project==null){
-            throw new NullPointerException( "There are not project define" );
-        }
-
-        ModelMapper modelMapper = new ModelMapper();
-        ProjectInfoDto dto = modelMapper.map(project, ProjectInfoDto.class);
-
-        this.id = dto.getId();
-        this.name = dto.getName();
-        this.description = dto.getDescription();
-        this.startDate = dto.getStartDate();
-        this.endDate = dto.getEndDate();
-        this.status = dto.getStatus();
-        this.projectDetails = dto.getProjectDetails();
-        this.userInfo = dto.getUserInfo();
-    }
-
     public Project toProject(){
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(this, Project.class);

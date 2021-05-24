@@ -18,7 +18,4 @@ public class ProjectMoreInfoDto {
 
     public ProjectMoreInfoDto(){}
 
-    public ProjectMoreInfoDto(Project project){
-        projectInfo = new ProjectInfoDto(project);
-    }
 }

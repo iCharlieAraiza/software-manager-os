@@ -24,7 +24,7 @@ class ProjectDtoTest {
     @Test
     void createProjectDtoWithProjectinfo(){
 
-        ProjectInfoDto projectInfoDto = new ProjectInfoDto( project );
+        ProjectInfoDto projectInfoDto = new ProjectInfoDto( );
         ProjectDto projectDto = new ProjectDto();
         projectDto.setProjectInfoDto( projectInfoDto );
 

@@ -13,18 +13,4 @@ class ProjectMoreInfoDtoTest {
     void beforeEach(){
         projectMoreInfoDto = new ProjectMoreInfoDto();
     }
-
-    @Test
-    void showToStringComponent(){
-        System.out.println( projectMoreInfoDto.toString() );
-    }
-
-    @Test
-    void initProjectMoreInfoByProject(){
-        Project project = new Project();
-        project.setName("Project test name");
-        ProjectMoreInfoDto test = new ProjectMoreInfoDto(project);
-
-        assertEquals("Project test name", test.getProjectInfo().getName());
-    }
 }
