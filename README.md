@@ -4,3 +4,4 @@ Open source software manager system created in Spring Boot and React
 - [ ] Define documentation
 - [ ] Define architecture
 - [ ] Coming soon
+- [ ] Update in the notebook
