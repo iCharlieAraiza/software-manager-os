@@ -1,6 +1,6 @@
 # Open Source Software Manager System (Legacy)
 
-**This is not an active repository.**
+**This repository is not active.**
 
 Open source software manager system created in Spring Boot and React
 - [ ] Check architecture
