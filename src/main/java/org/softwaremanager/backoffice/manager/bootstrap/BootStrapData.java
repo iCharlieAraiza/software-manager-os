@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
-
 @Component
 public class BootStrapData implements CommandLineRunner {
     @Autowired
@@ -45,8 +44,6 @@ public class BootStrapData implements CommandLineRunner {
     @Autowired
     ProjectService projectService;
 
-
-
     @Override
     public void run(String... args) throws Exception {
         //createProject();
@@ -62,10 +59,9 @@ public class BootStrapData implements CommandLineRunner {
         //getProjectsByUser();
         getProjectByDto();
 
-
     }
 
-    public void showTasks(){
+    public void showTasks() {
         //List<Task> tasks = taskRepository.findAll();
         //for(Task task : tasks){
         //    System.out.println(task.getProject().getName());
@@ -95,14 +91,14 @@ public class BootStrapData implements CommandLineRunner {
         taskRepository.save(task);
     }
 
-    public void createProject(){
+    public void createProject() {
         //Project project = new Project("Gestor de software",
              //   "Sistema de desarrollo de software de código abierto");
         //project.setStartDate(new Date());
         //projectRepository.save(project);
     }
 
-    public void mapTasksInProjects(){
+    public void mapTasksInProjects() {
         //List<Project> projects = projectRepository.findAll();
         //Project project = projects.get(0);
         //System.out.println(project.getName());
@@ -112,23 +108,22 @@ public class BootStrapData implements CommandLineRunner {
 
     }
 
-    public void testDelete(){
+    public void testDelete() {
         //Project project = projectRepository.findById(5L).get();
         //System.out.println(project.getName());
 
         //projectRepository.delete(project);
     }
 
-    public void initTop(){
+    public void initTop() {
         TypeOfProject top = new TypeOfProject();
         top.setName("Software");
         top.setDescription("Software and development project");
 
         topRepository.save(top);
-
     }
 
-    public void initProject(){
+    public void initProject() {
         Project project = new Project();
         ProjectDetails details = new ProjectDetails();
         TypeOfProject top = topRepository.getOne(1L);
@@ -150,21 +145,18 @@ public class BootStrapData implements CommandLineRunner {
         projectRepository.save(project);
     }
 
-    public void getProjectsByUser(){
+    public void getProjectsByUser() {
 
         if(projectRepository.findById(1L).isPresent()){
             Project project = projectRepository.findById(1L).get();
             project.getUsersByProjects().forEach(user -> System.out.println(user.getEmail()));
         }
-
     }
 
-    public void getProjectByDto(){
+    public void getProjectByDto() {
         Pageable inverseSorted = PageRequest.of(0, 5, Sort.by("id").descending());
         List<ProjectInfoDto> projectDtoList = projectService.findAll(inverseSorted);
 
         projectDtoList.forEach(System.out::println);
-
     }
-
 }
